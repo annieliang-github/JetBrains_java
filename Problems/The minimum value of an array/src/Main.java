@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Arrays;
 class Main {
     public static void main(String[] args) {
         // put your code here
@@ -8,6 +9,9 @@ class Main {
         for (int i = 0; i < length; i++) {
             array[i] = scanner.nextInt();
         }
+        Arrays.sort(array);
+        int num = array[0];
+        System.out.println(num);
 
     }
 }
