@@ -5,6 +5,7 @@ class BigIntegerConverter {
      * @return BigInteger instance
      */
     public static Number getBigInteger(String number) {
-        return // create BigIntegere instance here
+        java.math.BigInteger num = new java.math.BigInteger(number);
+        return num;
     }
 }
