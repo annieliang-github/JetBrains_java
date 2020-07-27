@@ -1,15 +1,18 @@
 import java.util.Scanner;
 import java.util.concurrent.*;
 
-public class Main {
-    public static void main(String[] args) {
+class PrimeNumberExecutorDemo {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
-        ExecutorService executor; // assign an object to it
+        ExecutorService executor = Executors.newSingleThreadExecutor();
 
         while (scanner.hasNext()) {
             int number = scanner.nextInt();
-            // create and submit tasks
+            executor.submit(new PrintIfPrimeTask(number));
         }
+
+        executor.shutdown();
+        executor.awaitTermination(10, TimeUnit.SECONDS);
     }
 }
 
@@ -22,6 +25,14 @@ class PrintIfPrimeTask implements Runnable {
 
     @Override
     public void run() {
-        // write code of task here
+        if (number < 2) {
+            return;
+        }
+        for (int i = 2; i < number; i++) {
+            if (number % i == 0) {
+                return;
+            }
+        }
+        System.out.println(number);
     }
 }
